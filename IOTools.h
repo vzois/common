@@ -85,7 +85,7 @@ void IOTools<DATA_T>::freadFile(DATA_T *& data, std::string file, bool pinned){
 	Time<millis> t;
 	t.start();
 	uint64_t i = 0;
-	uint64_t j = -1;
+	uint64_t j = 0;
 	char number[64];
 	while(i < cells(dim)){
 		short k = 0;
@@ -93,8 +93,8 @@ void IOTools<DATA_T>::freadFile(DATA_T *& data, std::string file, bool pinned){
 			number[k++] = buffer[j++];
 		}
 		number[k]='\0';
-		//std::cout<<"NUMBER: "<<number<< "\n";
 		data[i++] = (DATA_T)strtod(number,NULL);
+		//std::cout<<"NUMBER: "<<number<<","<<data[i-1]<< "\n";
 		j++;
 	}
 	t.lap("Read File Elapsed time");
