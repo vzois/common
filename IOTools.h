@@ -18,7 +18,7 @@ enum StructType{
 template<typename DATA_T>
 class IOTools{
 public:
-	IOTools():IOTools(0,0,COMMA, false){};
+	IOTools():IOTools(0,0,COMMA){};
 	IOTools(arr2D dim):IOTools(dim.first,dim.second,COMMA,false){};
 
 	/*
@@ -27,17 +27,16 @@ public:
 	 * 3. delimiter
 	 * 4. pinned memory or not
 	 */
-	IOTools(uint64_t rows, uint64_t cols, Delimiter dm, bool pinned){
+	IOTools(uint64_t rows, uint64_t cols, Delimiter dm){
 		this->dim.first = rows;
 		this->dim.second = cols;
 		this->dm = dm;
-		this->pinned = pinned;
 	};
 
 	~IOTools(){};
 
 	/*Read Data Methods*/
-	void freadFile(DATA_T *&arr, std::string file);
+	void freadFile(DATA_T *&arr, std::string file, bool pinned);
 
 	/*Write Data Methods*/
 	void randDataToFile(unsigned int d, unsigned int n, unsigned int max);
@@ -63,7 +62,6 @@ private:
 
 	StructType st;
 	Delimiter dm;
-	bool pinned;
 };
 
 /*
@@ -71,7 +69,7 @@ private:
  */
 
 template<typename DATA_T>
-void IOTools<DATA_T>::freadFile(DATA_T *& data, std::string file){
+void IOTools<DATA_T>::freadFile(DATA_T *& data, std::string file, bool pinned){
 	if(!this->fexists(file)) vz::error("fastRead: File Not Found Exception");
 	if(dim.first == 0 || dim.second == 0)  this->dim = dataDim(file);
 	if(pinned) allocHostMem<DATA_T>(&data,sizeof(DATA_T)* cells(dim),"Error Allocating Pinned Memory in fastReaFile");
