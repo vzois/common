@@ -37,7 +37,7 @@ public:
 	~IOTools(){};
 
 	/*Read Data Methods*/
-	void fastReadFile(DATA_T *&arr, std::string file);
+	void freadFile(DATA_T *&arr, std::string file);
 
 	/*Write Data Methods*/
 	void randDataToFile(unsigned int d, unsigned int n, unsigned int max);
@@ -71,7 +71,7 @@ private:
  */
 
 template<typename DATA_T>
-void IOTools<DATA_T>::fastReadFile(DATA_T *& data, std::string file){
+void IOTools<DATA_T>::freadFile(DATA_T *& data, std::string file){
 	if(!this->fexists(file)) vz::error("fastRead: File Not Found Exception");
 	if(dim.first == 0 || dim.second == 0)  this->dim = dataDim(file);
 	if(pinned) allocHostMem<DATA_T>(&data,sizeof(DATA_T)* cells(dim),"Error Allocating Pinned Memory in fastReaFile");
@@ -100,21 +100,6 @@ void IOTools<DATA_T>::fastReadFile(DATA_T *& data, std::string file){
 		j++;
 	}
 	t.lap("Read File Elapsed time");
-
-
-	/*std::stringstream iss; iss << buffer;
-	delete buffer;
-
-	i = 0;
-	char dummy;
-	//Time<millis> t;
-	t.start();
-	while(i < cells(dim)){
-		iss>>data[i]; iss >> dummy; i++;
-		//std::cout<< data[i-1] << " ";
-		//if(i % dim.first == 0){ std::cout<<std::endl; }
-	}
-	t.lap("Read File Elapsed time");*/
 }
 
 
