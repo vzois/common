@@ -1,3 +1,10 @@
+/*
+ * @author Vasileios Zois
+ * @email vzois@usc.edu
+ *
+ * Testing main function.
+ */
+
 #include "ArgParser.h"
 
 #include "Time.h"

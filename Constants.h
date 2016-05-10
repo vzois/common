@@ -1,6 +1,14 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
+/*
+ * @author Vasileios Zois
+ * @email vzois@usc.edu
+ *
+ * Timing constants.
+ */
+
+
 #include<ratio>
 #include<climits>
 #include<chrono>

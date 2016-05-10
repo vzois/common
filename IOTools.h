@@ -1,5 +1,12 @@
 #ifndef IOTOOLS_H
 #define IOTOOLS_H
+/*
+ * @author Vasileios Zois
+ * @email vzois@usc.edu
+ *
+ * General utility functions for loading formated data from file.
+ */
+
 
 #include "Utils.h"
 
@@ -75,17 +82,18 @@ void IOTools<DATA_T>::freadFile(DATA_T *& data, std::string file, bool pinned){
 	if(pinned) allocHostMem<DATA_T>(&data,sizeof(DATA_T)* cells(dim),"Error Allocating Pinned Memory in fastReaFile");
 	else data = new DATA_T[cells(dim)];
 
+
 	uint64_t totalbytes = this->fsize(file);
-	char *buffer = new char[totalbytes];
+	char *buffer = new char[totalbytes+1];
 	FILE *fp = fopen(file.c_str(), "r");
 	totalbytes = fread(buffer, 1, totalbytes, fp);
 	buffer[totalbytes] = '\0';
 	fclose(fp);
 
-	Time<millis> t;
-	t.start();
+	//Time<millis> t;
+	//t.start();
 	uint64_t i = 0;
-	uint64_t j = -1;
+	uint64_t j = 0;
 	char number[64];
 	while(i < cells(dim)){
 		short k = 0;
@@ -93,11 +101,11 @@ void IOTools<DATA_T>::freadFile(DATA_T *& data, std::string file, bool pinned){
 			number[k++] = buffer[j++];
 		}
 		number[k]='\0';
-		//std::cout<<"NUMBER: "<<number<< "\n";
 		data[i++] = (DATA_T)strtod(number,NULL);
+		//std::cout<<"NUMBER: "<<number<<","<<data[i-1]<< "\n";
 		j++;
 	}
-	t.lap("Read File Elapsed time");
+	//t.lap("Read File Elapsed time");
 }
 
 
@@ -155,16 +163,16 @@ arr2D IOTools<DATA_T>::dataDim(std::string file){
 	while (!feof(fp)){
 		unsigned int read = fread(buffer, 1, readBufferSize, fp);
 		char *pch = std::strchr(buffer, '\n');
-		while (pch != NULL){ dim.second++;  pch = std::strchr(pch + 1, '\n'); }
+		while (pch != NULL){ dim.first++;  pch = std::strchr(pch + 1, '\n'); }
 		memset(buffer, '\0', read);
 	}
-	dim.second++;
+	dim.first++;
 	fclose(fp);
 
 	std::ifstream ifs(file, std::ifstream::in);
 	std::string line;
 	std::getline(ifs, line);
-	dim.first = std::count(line.begin(), line.end(), dm) + 1;
+	dim.second = std::count(line.begin(), line.end(), dm) + 1;
 
 	ifs.close();
 	return dim;
