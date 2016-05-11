@@ -13,7 +13,7 @@ NVCC_FLAGS = --ptxas-options=-v -gencode arch=compute_35,code=sm_35 -rdc=true
 all: compile
 
 compile:
-	$(CC) -std=c++11 -c *.cpp -L $(INCLUDE_LIB) $(LIB_FLAGS) -I$(INCLUDE_PATHS)
+	#$(CC) -std=c++11 -c *.cpp -L $(INCLUDE_LIB) $(LIB_FLAGS) -I$(INCLUDE_PATHS)
 	$(NVCC)  -std=c++11 $(NVCC_FLAGS) -c *.cu
 	$(NVCC) -std=c++11 -gencode arch=compute_35,code=sm_35 *.o -o $(EXEC)
 	

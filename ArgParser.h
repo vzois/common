@@ -20,6 +20,12 @@ const static std::string MDARG="-md";//EXECUTION MODE
 const static std::string HELP="-h";
 const static std::string TARG="-t";
 const static std::string DPT="-pt";//DATA PER THREAD// CUDA ONLY
+const static std::string BARG="-b";
+const static std::string IARG="-i";
+const static std::string F1ARG="-f1";
+const static std::string F2ARG="-f2";
+const static std::string INARG="-in";
+const static std::string ONARG="-on";
 
 const static std::string DARG_H="data dimensionality.";
 const static std::string CARG_H="data cardinality.";
@@ -43,6 +49,7 @@ public:
 	void addArg(std::string, std::string);
 	int getInt(const std::string);
 	unsigned int getUint(const std::string);
+	float getFloat(const std::string);
 	std::string getString(std::string);
 
 	std::string mysetw(int,int);
@@ -73,10 +80,10 @@ void ArgParser::parseArgs(int argc, char **argv){
 	for(int i = 1;i<argc;i++){
 		std::vector<std::string> tokens = this->split(std::string(argv[i]),"=");
 		if(tokens.size() == 2){
-			std::cout<<tokens[0] << "," << tokens[1] << std::endl;
+			//std::cout<<tokens[0] << "," << tokens[1] << std::endl;
 			this->addArg(tokens[0],tokens[1]);
 		}else{
-			std::cout<<tokens[0] << "," << "empty" << std::endl;
+			//std::cout<<tokens[0] << "," << "empty" << std::endl;
 			this->addArg(tokens[0],"empty");
 		}
 	}
@@ -94,6 +101,9 @@ unsigned int ArgParser::getUint(std::string arg){
 	return atoi(this->args[arg].c_str());
 }
 
+float ArgParser::getFloat(std::string arg){
+	return atof(this->args[arg].c_str());
+}
 
 std::string ArgParser::getString(std::string arg){
 	return this->args[arg];
