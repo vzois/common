@@ -1,5 +1,13 @@
 #ifndef PAR_UTILS_H
 #define PAR_UTILS_H
+
+/*
+ * @author Vasileios Zois
+ * @email vzois@usc.edu
+ *
+ * Parallel utility functions. (Beta version)
+ */
+
 #include "Utils.h"
 
 #include <thread>

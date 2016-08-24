@@ -1,6 +1,13 @@
 #ifndef UTILS_H
 #define UTILS_H
 
+/*
+ * @author Vasileios Zois
+ * @email vzois@usc.edu
+ *
+ * General utility functions for generating random numbers.
+ */
+
 #define DEBUG false
 #define TEST false
 

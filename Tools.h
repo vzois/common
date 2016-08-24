@@ -1,5 +1,12 @@
 #ifndef TOOLS_H
 #define TOOL_H
+/*
+ * @author Vasileios Zois
+ * @email vzois@usc.edu
+ *
+ * Various tools. (Beta version)
+ */
+
 
 #include <algorithm>
 

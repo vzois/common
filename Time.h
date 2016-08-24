@@ -1,5 +1,13 @@
 #ifndef TIME_H
 #define TIME_H
+
+/*
+ * @author Vasileios Zois
+ * @email vzois@usc.edu
+ *
+ * Utility functions for measuring execution time.
+ */
+
 #include<ratio>
 #include<ctime>
 #include<chrono>

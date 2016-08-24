@@ -1,5 +1,12 @@
 #ifndef IOTOOLS_H
 #define IOTOOLS_H
+/*
+ * @author Vasileios Zois
+ * @email vzois@usc.edu
+ *
+ * General utility functions for loading formated data from file.
+ */
+
 
 #include "Utils.h"
 

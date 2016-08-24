@@ -1,6 +1,14 @@
 #ifndef BITOP_H
 #define BITOP_H
 
+/*
+ * @author Vasileios Zois
+ * @email vzois@usc.edu
+ *
+ * Common bit-wise operations.
+ */
+
+
 #define HEX0(V) ((0x0000000f & V)>>0)
 #define HEX1(V) ((0x000000f0 & V)>>4)
 #define HEX2(V) ((0x00000f00 & V)>>8)

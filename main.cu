@@ -1,4 +1,5 @@
 #include "ArgParser.h"
+#include "CudaHelper.h"
 
 int main(int argc, char **argv){
 
@@ -10,6 +11,8 @@ int main(int argc, char **argv){
 		return 0;
 	}
 
+	printf("Setting Device!!!\n");
+	cutil::setActiveDevice(0);
 
 
 	return 0;
